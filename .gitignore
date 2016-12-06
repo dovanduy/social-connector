@@ -1,0 +1,13 @@
+*.suo
+packages/
+App.Api/obj/
+App.Api/bin/roslyn/vbc.exe
+App.Api/bin/roslyn/csc.exe
+App.Api/bin/
+*.cache
+App.Service.Service/bin/
+App.Service.Service/obj/
+App.Service.Impl/bin/
+App.Service.Impl/obj/
+Application.Common/bin/
+Application.Common/obj/
