@@ -11,7 +11,8 @@
         {
             this.ValidatePostMessageRequest(request);
             IConnector facebookConnector = ConnectorFactory.Create(ConnectorType.Facebook);
-            return facebookConnector.Post<PostMessageRequest, PostMessageResponse>(string.Empty, request).Data;
+            facebookConnector.Post<PostMessageRequest, PostMessageResponse>(string.Empty, request);
+            return new PostMessageResponse();
         }
 
         private void ValidatePostMessageRequest(PostMessageRequest request)
