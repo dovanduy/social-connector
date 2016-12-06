@@ -152,6 +152,7 @@
     <Compile Include="Connector\IConnectorBuilderFactory.cs" />
     <Compile Include="Connector\JsonContent.cs" />
     <Compile Include="Connector\RESTConnector.cs" />
+    <Compile Include="Connector\Twitter\TwitterConnector.cs" />
     <Compile Include="ConsoleApplication.cs" />
     <Compile Include="Data\BaseContent.cs" />
     <Compile Include="Data\BaseContentRepository.cs" />

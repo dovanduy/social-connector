@@ -180,11 +180,13 @@
     public enum ConnectorType
     {
         REST,
-        Facebook
+        Facebook,
+        Twitter
     }
 
     public enum BuilderFactoryType
     {
-        Facebook
+        Facebook,
+        Twitter
     }
 }

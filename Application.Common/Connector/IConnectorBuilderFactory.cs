@@ -4,6 +4,6 @@
 
     public interface IConnectorBuilderFactory
     {
-        IFacebookRequestBuilder Create(BuilderFactoryType builderFactoryType);
+        IRequestBuilder Create(BuilderFactoryType builderFactoryType);
     }
 }

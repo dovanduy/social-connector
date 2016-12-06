@@ -102,5 +102,14 @@
                 return (FacebookElement)this["facebook"];
             }
         }
+
+        [ConfigurationProperty("twitter")]
+        public TwitterElement Twitter
+        {
+            get
+            {
+                return (TwitterElement)this["twitter"];
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@
         public override IResponseData<TResponse> Post<TRequest, TResponse>(string uri, TRequest data)
         {
             IConnectorBuilderFactory builderFactory = IoC.Container.Resolve<IConnectorBuilderFactory>();
-            IFacebookRequestBuilder requestBuilder = builderFactory.Create(BuilderFactoryType.Facebook);
+            IRequestBuilder requestBuilder = builderFactory.Create(BuilderFactoryType.Facebook);
 
             string url = requestBuilder.CreateUrl(data);
             using (HttpClient client = this.CreateHttpClient(Configuration.Current.Facebook.BaseApiUrl))

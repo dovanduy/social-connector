@@ -1,6 +1,7 @@
 ﻿namespace App.Common.Connector
 {
     using App.Common.Connector.Facebook;
+    using Twitter;
 
     public class ConnectorFactory
     {
@@ -8,6 +9,8 @@
         {
             switch (type)
             {
+                case ConnectorType.Twitter:
+                    return new TwitterConnector();
                 case ConnectorType.Facebook:
                     return new FacebookConnector();
                 case ConnectorType.REST:
