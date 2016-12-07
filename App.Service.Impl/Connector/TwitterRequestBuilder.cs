@@ -1,10 +1,11 @@
 ﻿namespace App.Service.Connector
 {
     using App.Common.Connector;
+    using System.Collections.Generic;
 
-    internal class TwitterRequestBuilder : IRequestBuilder
+    internal class TwitterRequestBuilder : BaseRequestBuilder, IRequestBuilder
     {
-        public string CreateUrl<TData>(TData data)
+        public override string CreateUrl<TData>(TData data)
         {
             if (typeof(IPostMessage).IsAssignableFrom(data.GetType()))
             {
@@ -17,6 +18,26 @@
         private string CreateUrl(IPostMessage data)
         {
             return string.Format("{0}/{1}", App.Common.Configurations.Configuration.Current.Twitter.BaseApiUrl, "statuses/update.json");
+        }
+
+        public override OAuthRequest GetOAuthRequest<TRequest>(TRequest data)
+        {
+            if (typeof(IPostMessage).IsAssignableFrom(data.GetType()))
+            {
+                return this.GetOAuthRequest((IPostMessage)data);
+            }
+
+            throw new System.InvalidOperationException("This type of request was not supported by TwitterRequestBuilder");
+        }
+
+        private OAuthRequest GetOAuthRequest(IPostMessage message)
+        {
+            var data = new Dictionary<string, string> {
+                { "status", message.Content },
+                { "trim_user", "1" }
+            };
+
+            return new OAuthRequest(this.CreateUrl(message), data);
         }
     }
 }

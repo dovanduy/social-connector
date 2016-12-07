@@ -3,9 +3,9 @@
     using Common.Configurations;
     using Common.Connector;
 
-    internal class FacebookRequestBuilder : IRequestBuilder
+    internal class FacebookRequestBuilder : BaseRequestBuilder, IRequestBuilder
     {
-        public string CreateUrl<TData>(TData data)
+        public override string CreateUrl<TData>(TData data)
         {
             if (typeof(IPostMessage).IsAssignableFrom(data.GetType()))
             {

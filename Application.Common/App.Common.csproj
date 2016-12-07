@@ -135,6 +135,7 @@
     <Compile Include="Authorize\UnAuthorizedException.cs" />
     <Compile Include="Configurations\AuthenticationElement.cs" />
     <Compile Include="Configurations\DatabasesElement.cs" />
+    <Compile Include="Configurations\TwitterElement.cs" />
     <Compile Include="Configurations\FacebookElement.cs" />
     <Compile Include="Configurations\FolderElement.cs" />
     <Compile Include="Configurations\IntegrationTestElement.cs" />
@@ -143,14 +144,16 @@
     <Compile Include="Configurations\LocalizationElement.cs" />
     <Compile Include="Configurations\PagingElement.cs" />
     <Compile Include="Connector\BaseConnector.cs" />
+    <Compile Include="Connector\BaseRequestBuilder.cs" />
     <Compile Include="Connector\ConnectorFactory.cs" />
     <Compile Include="Connector\Facebook\FacebookConnector.cs" />
     <Compile Include="Connector\Facebook\FacebookRequestBuilder.cs" />
-    <Compile Include="Connector\Facebook\IFacebookPostMessage.cs" />
-    <Compile Include="Connector\Facebook\IFacebookRequestBuilder.cs" />
+    <Compile Include="Connector\IPostMessage.cs" />
+    <Compile Include="Connector\IRequestBuilder.cs" />
     <Compile Include="Connector\IConnector.cs" />
     <Compile Include="Connector\IConnectorBuilderFactory.cs" />
     <Compile Include="Connector\JsonContent.cs" />
+    <Compile Include="Connector\OAuthRequest.cs" />
     <Compile Include="Connector\RESTConnector.cs" />
     <Compile Include="Connector\Twitter\TwitterConnector.cs" />
     <Compile Include="ConsoleApplication.cs" />

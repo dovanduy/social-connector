@@ -47,6 +47,7 @@
     <Compile Include="Bootstrap.cs" />
     <Compile Include="Connector\ConnectorBuilderFactory.cs" />
     <Compile Include="Connector\FacebookRequestBuilder.cs" />
+    <Compile Include="Connector\TwitterRequestBuilder.cs" />
     <Compile Include="Message\MessageService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

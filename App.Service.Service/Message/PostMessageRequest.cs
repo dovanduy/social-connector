@@ -1,6 +1,6 @@
 ﻿namespace App.Service.Message
 {
-    using App.Common.Connector.Facebook;
+    using Common.Connector;
 
     public class PostMessageRequest : IPostMessage
     {

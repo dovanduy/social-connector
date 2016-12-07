@@ -11,8 +11,8 @@
         {
             this.ValidatePostMessageRequest(request);
 
-            IConnector facebookConnector = ConnectorFactory.Create(ConnectorType.Facebook);
-            facebookConnector.Post<PostMessageRequest, PostMessageResponse>(string.Empty, request);
+            //IConnector facebookConnector = ConnectorFactory.Create(ConnectorType.Facebook);
+            //facebookConnector.Post<PostMessageRequest, PostMessageResponse>(string.Empty, request);
 
             IConnector twitterConnector = ConnectorFactory.Create(ConnectorType.Twitter);
             twitterConnector.Post<PostMessageRequest, PostMessageResponse>(string.Empty, request);
