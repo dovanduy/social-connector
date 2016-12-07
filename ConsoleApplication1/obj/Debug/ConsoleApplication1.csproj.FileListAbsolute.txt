@@ -1,0 +1,12 @@
+F:\projects\connector\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+F:\projects\connector\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+F:\projects\connector\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+F:\projects\connector\ConsoleApplication1\bin\Debug\Hammock.ClientProfile.dll
+F:\projects\connector\ConsoleApplication1\bin\Debug\Newtonsoft.Json.dll
+F:\projects\connector\ConsoleApplication1\bin\Debug\TweetSharp.dll
+F:\projects\connector\ConsoleApplication1\bin\Debug\Hammock.ClientProfile.pdb
+F:\projects\connector\ConsoleApplication1\bin\Debug\Newtonsoft.Json.xml
+F:\projects\connector\ConsoleApplication1\bin\Debug\TweetSharp.pdb
+F:\projects\connector\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+F:\projects\connector\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+F:\projects\connector\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

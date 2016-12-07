@@ -4,6 +4,7 @@
     using App.Common.Http;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.IO;
 
     public class BaseConnector : IConnector
     {

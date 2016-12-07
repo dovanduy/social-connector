@@ -12,10 +12,17 @@
 
     internal class TwitterConnector : BaseConnector
     {
-        private const string AppConsumerKey = "9iDwZY1pRSNozUHHJ4nG3ylni";
-        private const string AppConsumerSecret = "A8uDyUQHBNrxAMYW13FbOO7i52bSZNkMTOY8TSLSFqghDpe5vh";
-        private const string AccessToken = " 806037750881226752-oqtUgPlIAs3RLFVEmdMprbzXlF4xGLJ";
-        private const string AccessTokenSecret = "Girhom6ihod6N80RNmPKM2QLMr6qRTfvvdavHmgL4ac1j";
+        protected const string AppConsumerKey = "wZc0bZ4IhQ0IFBfhdPnnT5cJi";
+        protected const string AppConsumerSecret = "og5tNjm7cWqZSDaUhus0QJldRBZt0KYhd0bnStLXjcNpodageH";
+        protected const string AccessToken = "806037750881226752-ngNvUw6NlEy5tpxBwFEe79PQo4NUAXf";
+        protected const string AccessTokenSecret = "2p4SswJXfJ61joywV4P89LMe5bT0r0wh7aT7zz1HwMCOb";
+
+
+        //public const string AppConsumerKey = "xvz1evFS4wEEPTGEFPHBog";
+        //public const string AppConsumerSecret = "kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw";
+        //public const string AccessToken = "370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb";
+        //public const string AccessTokenSecret = "LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE";
+
         private readonly DateTime EpochUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         private readonly HMACSHA1 sigHasher;
 
@@ -51,9 +58,9 @@
         {
             var timestamp = (int)((DateTime.UtcNow - this.EpochUtc).TotalSeconds);
             request.Data.Add("oauth_consumer_key", TwitterConnector.AppConsumerKey);
+            request.Data.Add("oauth_nonce", "kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg");
             request.Data.Add("oauth_signature_method", "HMAC-SHA1");
             request.Data.Add("oauth_timestamp", timestamp.ToString());
-            request.Data.Add("oauth_nonce", "a");
             request.Data.Add("oauth_token", TwitterConnector.AccessToken);
             request.Data.Add("oauth_version", "1.0");
             request.Data.Add("oauth_signature", this.GenerateSignature(request));
@@ -71,7 +78,7 @@
 
         private string GenerateSignature(OAuthRequest request)
         {
-            string fullUrl = string.Format("{0}/{1}", App.Common.Configurations.Configuration.Current.Twitter.BaseApiUrl, request.Url);
+            string fullUrl = request.Url;
 
             var sigString = string.Join("&", request.Data
                 .Union(request.Data)
