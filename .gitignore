@@ -11,3 +11,5 @@ App.Service.Impl/bin/
 App.Service.Impl/obj/
 Application.Common/bin/
 Application.Common/obj/
+obj
+bin

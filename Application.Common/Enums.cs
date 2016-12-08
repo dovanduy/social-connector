@@ -189,4 +189,9 @@
         Facebook,
         Twitter
     }
+
+    public enum OAuthAction {
+        POST,
+        GET
+    }
 }

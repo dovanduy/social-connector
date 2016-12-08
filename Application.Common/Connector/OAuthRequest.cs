@@ -4,6 +4,7 @@
 
     public class OAuthRequest
     {
+        public OAuthAction Action { get; set; }
         public string Url { get; protected set; }
         public Dictionary<string, string> Data { get; protected set; }
 

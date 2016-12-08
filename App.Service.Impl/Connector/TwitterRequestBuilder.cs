@@ -18,6 +18,7 @@
         private string CreateUrl(IPostMessage data)
         {
             return string.Format("{0}{1}", App.Common.Configurations.Configuration.Current.Twitter.BaseApiUrl, "statuses/update.json");
+            //return string.Format("{0}{1}", App.Common.Configurations.Configuration.Current.Twitter.BaseApiUrl, "account/verify_credentials.json");
         }
 
         public override OAuthRequest GetOAuthRequest<TRequest>(TRequest data)
@@ -35,7 +36,7 @@
             var data = new Dictionary<string, string> {
                 { "status", message.Content },
                 { "trim_user", "1" },
-                { "include_entities", "true" }
+                //{ "include_entities", "true" }
             };
 
             return new OAuthRequest(this.CreateUrl(message), data);

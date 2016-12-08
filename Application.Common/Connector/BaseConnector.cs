@@ -5,6 +5,8 @@
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.IO;
+    using Logging;
+    using DI;
 
     public class BaseConnector : IConnector
     {
@@ -39,8 +41,12 @@
 
         protected TResponse GetResponseAs<TResponse>(HttpContent content)
         {
-            TResponse result = content.ReadAsAsync<TResponse>().Result;
-            return result;
+            string result = content.ReadAsStringAsync().Result;
+            ILogger logger = IoC.Container.Resolve<ILogger>();
+            logger.Info(result);
+            return default(TResponse);
+            //TResponse result = content.ReadAsAsync<TResponse>().Result;
+            //return result;
         }
     }
 }

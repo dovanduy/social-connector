@@ -9,6 +9,9 @@
     using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
+    using System.Net.Http.Headers;
+    using Connector;
+    using System.Web;
 
     internal class TwitterConnector : BaseConnector
     {
@@ -36,11 +39,14 @@
             IConnectorBuilderFactory builderFactory = IoC.Container.Resolve<IConnectorBuilderFactory>();
             IRequestBuilder requestBuilder = builderFactory.Create(BuilderFactoryType.Twitter);
             OAuthRequest request = requestBuilder.GetOAuthRequest(data);
+            request.Action = OAuthAction.POST;
 
             using (HttpClient client = this.CreateHttpClient(Configuration.Current.Twitter.BaseApiUrl, request))
             {
                 HttpContent content = new JsonContent<TRequest>(data);
+                //content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
                 HttpResponseMessage responseMessage = client.PostAsync(request.Url, content).Result;
+                // HttpResponseMessage responseMessage = client.GetAsync(request.Url).Result;
                 IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage.Content);
                 return result;
             }
@@ -58,7 +64,7 @@
         {
             var timestamp = (int)((DateTime.UtcNow - this.EpochUtc).TotalSeconds);
             request.Data.Add("oauth_consumer_key", TwitterConnector.AppConsumerKey);
-            request.Data.Add("oauth_nonce", "kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg");
+            request.Data.Add("oauth_nonce", "ea9ec8429b68d6b77cd5600adbbb0456");
             request.Data.Add("oauth_signature_method", "HMAC-SHA1");
             request.Data.Add("oauth_timestamp", timestamp.ToString());
             request.Data.Add("oauth_token", TwitterConnector.AccessToken);
@@ -69,7 +75,7 @@
 
         private string GenerateOAuthHeader(Dictionary<string, string> data)
         {
-            return "OAuth " + string.Join(", ",
+            return "OAuth " + string.Join(",",
                 data.Where(kvp => kvp.Key.StartsWith("oauth_"))
                 .Select(kvp => string.Format("{0}=\"{1}\"", Uri.EscapeDataString(kvp.Key), Uri.EscapeDataString(kvp.Value)))
                 .OrderBy(s => s)
@@ -88,9 +94,10 @@
 
             var fullSigData = string.Format(
                 "{0}&{1}&{2}",
-                "POST",
-                Uri.EscapeDataString(fullUrl),
-                Uri.EscapeDataString(sigString.ToString())
+                request.Action.ToString(),
+                HttpUtility.UrlEncode(fullUrl),
+                HttpUtility.UrlEncode(sigString.ToString())
+                //Uri.EscapeDataString(sigString.ToString())
             );
 
             return Convert.ToBase64String(this.sigHasher.ComputeHash(new ASCIIEncoding().GetBytes(fullSigData.ToString())));
