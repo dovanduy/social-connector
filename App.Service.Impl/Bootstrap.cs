@@ -13,8 +13,9 @@
         public override void Execute(IBaseContainer context)
         {
             context.RegisterSingleton<App.Service.Message.IMessageService, App.Service.Impl.Message.MessageService>();
-            context.RegisterSingleton<App.Common.Connector.IConnectorBuilderFactory, App.Service.Impl.Connector.ConnectorBuilderFactory>();
             context.RegisterSingleton<App.Service.LinkedIn.ILinkedInService, App.Service.Impl.LinkedIn.LinkedInService>();
+            context.RegisterSingleton<App.Service.Twitter.ITwitterService, App.Service.Impl.Twitter.TwitterService>();
+            context.RegisterSingleton<App.Service.Facebook.IFacebookService, App.Service.Impl.Facebook.FacebookService>();
         }
     }
 }

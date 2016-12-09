@@ -9,5 +9,14 @@
         {
             get { return (string)this["baseApiUrl"]; }
         }
+
+        [ConfigurationProperty("accessToken")]
+        public string AccessToken
+        {
+            get
+            {
+                return (string)this["accessToken"];
+            }
+        }
     }
 }

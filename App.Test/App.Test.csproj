@@ -47,6 +47,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="Twitterizer2">
+      <HintPath>C:\Users\tttu\Downloads\Twitterizer-develop\Twitterizer-develop\Twitterizer2\obj\Debug\Twitterizer2.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">

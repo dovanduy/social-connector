@@ -9,14 +9,10 @@
     {
         public override IResponseData<TResponse> Post<TRequest, TResponse>(string uri, TRequest data)
         {
-            IConnectorBuilderFactory builderFactory = IoC.Container.Resolve<IConnectorBuilderFactory>();
-            IRequestBuilder requestBuilder = builderFactory.Create(BuilderFactoryType.Facebook);
-
-            string url = requestBuilder.CreateUrl(data);
             using (HttpClient client = this.CreateHttpClient(Configuration.Current.Facebook.BaseApiUrl))
             {
                 HttpContent content = new JsonContent<TRequest>(data);
-                HttpResponseMessage responseMessage = client.PostAsync(url, content).Result;
+                HttpResponseMessage responseMessage = client.PostAsync(uri, content).Result;
                 IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage.Content);
                 return result;
             }

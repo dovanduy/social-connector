@@ -252,7 +252,6 @@
     <Compile Include="Connector\LinkedIn\LinkedInConnector.cs" />
     <Compile Include="Connector\OAuthRequest.cs" />
     <Compile Include="Connector\RESTConnector.cs" />
-    <Compile Include="Connector\Twitter\TwitterConnector.cs" />
     <Compile Include="ConsoleApplication.cs" />
     <Compile Include="Data\BaseContent.cs" />
     <Compile Include="Data\BaseContentRepository.cs" />
@@ -468,6 +467,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Connector\Twitter\" />
     <Folder Include="Tasks\Attribute\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

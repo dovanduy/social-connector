@@ -2,8 +2,9 @@
 {
     using App.Service.Message;
     using App.Common.Validation;
-    using Service.LinkedIn;
     using Common.DI;
+    using Service.Twitter;
+    using Service.Facebook;
 
     internal class MessageService : IMessageService
     {
@@ -11,20 +12,18 @@
         {
             this.ValidatePostMessageRequest(request);
 
-            //// IConnector facebookConnector = ConnectorFactory.Create(ConnectorType.Facebook);
-            //// facebookConnector.Post<PostMessageRequest, PostMessageResponse>(string.Empty, request);
+            ShareFacebookComment shareFBComment = new ShareFacebookComment(request.Content);
+            IFacebookService facebookInService = IoC.Container.Resolve<IFacebookService>();
+            facebookInService.ShareComment(shareFBComment);
 
-            ShareComment shareComment = new ShareComment(request.Content);
-            ILinkedInService linkedInService = IoC.Container.Resolve<ILinkedInService>();
-            linkedInService.ShareComment(shareComment);
+            //// was eexceed of limitation
+            ////ShareComment shareComment = new ShareComment(request.Content);
+            ////ILinkedInService linkedInService = IoC.Container.Resolve<ILinkedInService>();
+            ////linkedInService.ShareComment(shareComment);
 
-            /* To do*/
-            //// IConnector linkedInConnector = ConnectorFactory.Create(ConnectorType.LinkedIn);
-            //// linkedInConnector.Post<PostMessageRequest, PostMessageResponse>(string.Empty, request);
-
-            ////IConnector twitterConnector = ConnectorFactory.Create(ConnectorType.Twitter);
-            ////twitterConnector.Post<PostMessageRequest, PostMessageResponse>(string.Empty, request);
-
+            ShareTwitterComment twitterComment = new ShareTwitterComment(request.Content);
+            ITwitterService twitterService = IoC.Container.Resolve<ITwitterService>();
+            twitterService.ShareComment(twitterComment);
             return new PostMessageResponse();
         }
 

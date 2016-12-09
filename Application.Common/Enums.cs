@@ -181,7 +181,6 @@
     {
         REST,
         Facebook,
-        Twitter,
         LinkedIn
     }
 
