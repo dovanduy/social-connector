@@ -181,7 +181,8 @@
     {
         REST,
         Facebook,
-        Twitter
+        Twitter,
+        LinkedIn
     }
 
     public enum BuilderFactoryType
@@ -193,5 +194,9 @@
     public enum OAuthAction {
         POST,
         GET
+    }
+
+    public enum VisibilityType {
+        AnyOne
     }
 }

@@ -9,6 +9,8 @@
         {
             switch (type)
             {
+                case ConnectorType.LinkedIn:
+                    return new LinkedInConnector();
                 case ConnectorType.Twitter:
                     return new TwitterConnector();
                 case ConnectorType.Facebook:

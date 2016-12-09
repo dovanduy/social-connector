@@ -18,7 +18,6 @@
         private string CreateUrl(IPostMessage data)
         {
             return string.Format("{0}{1}", App.Common.Configurations.Configuration.Current.Twitter.BaseApiUrl, "statuses/update.json");
-            //return string.Format("{0}{1}", App.Common.Configurations.Configuration.Current.Twitter.BaseApiUrl, "account/verify_credentials.json");
         }
 
         public override OAuthRequest GetOAuthRequest<TRequest>(TRequest data)
@@ -28,7 +27,7 @@
                 return this.GetOAuthRequest((IPostMessage)data);
             }
 
-            throw new System.InvalidOperationException("This type of request was not supported by TwitterRequestBuilder");
+            throw new System.InvalidOperationException("type This of request was not supported by TwitterRequestBuilder");
         }
 
         private OAuthRequest GetOAuthRequest(IPostMessage message)
@@ -36,7 +35,7 @@
             var data = new Dictionary<string, string> {
                 { "status", message.Content },
                 { "trim_user", "1" },
-                //{ "include_entities", "true" }
+                { "include_entities", "true" }
             };
 
             return new OAuthRequest(this.CreateUrl(message), data);

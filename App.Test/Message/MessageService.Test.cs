@@ -11,7 +11,7 @@
         [TestMethod]
         public void TwitterConnector_CanPostMessage_ToUserTwitterAccount()
         {
-            PostMessageRequest request = new PostMessageRequest() { Subject = "Hello Ladies + Gentlemen, a signed OAuth request!", Content = "Hello Ladies + Gentlemen, a signed OAuth request!" };
+            PostMessageRequest request = new PostMessageRequest() { Subject = "Just test my API", Content = "Just test my API Content" };
             IMessageService service = IoC.Container.Resolve<IMessageService>();
             PostMessageResponse postResult = service.Post(request);
         }

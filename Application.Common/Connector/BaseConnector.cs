@@ -41,12 +41,15 @@
 
         protected TResponse GetResponseAs<TResponse>(HttpContent content)
         {
+            /*
             string result = content.ReadAsStringAsync().Result;
             ILogger logger = IoC.Container.Resolve<ILogger>();
             logger.Info(result);
             return default(TResponse);
-            //TResponse result = content.ReadAsAsync<TResponse>().Result;
-            //return result;
+            */
+
+            TResponse result = content.ReadAsAsync<TResponse>().Result;
+            return result;
         }
     }
 }

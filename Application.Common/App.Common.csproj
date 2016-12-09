@@ -230,6 +230,7 @@
     <Compile Include="Authorize\UnAuthorizedException.cs" />
     <Compile Include="Configurations\AuthenticationElement.cs" />
     <Compile Include="Configurations\DatabasesElement.cs" />
+    <Compile Include="Configurations\LinkedInElement.cs" />
     <Compile Include="Configurations\TwitterElement.cs" />
     <Compile Include="Configurations\FacebookElement.cs" />
     <Compile Include="Configurations\FolderElement.cs" />
@@ -248,6 +249,7 @@
     <Compile Include="Connector\IConnector.cs" />
     <Compile Include="Connector\IConnectorBuilderFactory.cs" />
     <Compile Include="Connector\JsonContent.cs" />
+    <Compile Include="Connector\LinkedIn\LinkedInConnector.cs" />
     <Compile Include="Connector\OAuthRequest.cs" />
     <Compile Include="Connector\RESTConnector.cs" />
     <Compile Include="Connector\Twitter\TwitterConnector.cs" />
@@ -286,12 +288,14 @@
     <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\GuidHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\ObjectHelper.cs" />
     <Compile Include="Helpers\ParameterHelper.cs" />
     <Compile Include="Helpers\PhotoHelper.cs" />
     <Compile Include="BaseExecutable.cs" />
     <Compile Include="Helpers\RegexHelper.cs" />
     <Compile Include="Helpers\TestCaseHelper.cs" />
+    <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Helpers\UtilHelper.cs" />
     <Compile Include="Helpers\ValidationHelper.cs" />
     <Compile Include="Mail\EmailContent.cs" />
@@ -468,7 +472,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y /S /r "$(ProjectDir)Configurations\configuration.debug.config" "$(SolutionDir)App.Api\Config\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y /S /r "$(ProjectDir)Configurations\configuration.debug.config" "$(SolutionDir)App.Api\Config\"
+xcopy /Y /S /r "$(ProjectDir)Configurations\configuration.debug.config" "$(SolutionDir)App.Test\Config\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

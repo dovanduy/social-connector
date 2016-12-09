@@ -14,6 +14,7 @@
         {
             context.RegisterSingleton<App.Service.Message.IMessageService, App.Service.Impl.Message.MessageService>();
             context.RegisterSingleton<App.Common.Connector.IConnectorBuilderFactory, App.Service.Impl.Connector.ConnectorBuilderFactory>();
+            context.RegisterSingleton<App.Service.LinkedIn.ILinkedInService, App.Service.Impl.LinkedIn.LinkedInService>();
         }
     }
 }

@@ -44,6 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LinkedIn\ILinkedInService.cs" />
+    <Compile Include="LinkedIn\LinkedVisibility.cs" />
+    <Compile Include="LinkedIn\ShareComment.cs" />
+    <Compile Include="LinkedIn\ShareCommentResponse.cs" />
     <Compile Include="Message\IMessageService.cs" />
     <Compile Include="Message\PostMessageRequest.cs" />
     <Compile Include="Message\PostMessageResponse.cs" />

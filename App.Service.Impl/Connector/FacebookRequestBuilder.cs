@@ -17,7 +17,7 @@
 
         private string CreateUrl(IPostMessage data)
         {
-            string accessToken = "EAAFUS06xm00BAFyUnZAvCyc3HBnGnwR26zMwmqVteiyPHFk6ZCLTiE8nKHWFwokOJQZBZBB2ySZCSdxoj1ZBRnsu0UmLEPUAUN72l2TyjgsY1rwh5zuZBYrZBe9TQcuP6p3YgrBiNfKBSEZAwROadzow6XuLjuis8IVzK2hETGYeBAAZDZD";
+            string accessToken = "EAAFUS06xm00BAH8PIIOpk6bq80hGRRAYMTYa8Jfq7k88cSVI4k2Y0ERBYf4a5NsVZBejXAZCCnkFv7fChXMziHFISAyn6AHXq9zy9tgseVEfmrqvlJOxZAVF50sZCJ3NcoyscmBxdjbdmkZCYvicRDBbD9kRRL8EQyzFZC57cZBMwZDZD";
             return string.Format(@"{0}/v2.8/me/feed?access_token={1}&message={2}", Configuration.Current.Facebook.BaseApiUrl, accessToken, data.Content);
         }
     }

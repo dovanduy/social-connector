@@ -6,12 +6,9 @@
     using System.Net.Http;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
-    using System.Net.Http.Headers;
     using Connector;
-    using System.Web;
 
     internal class TwitterConnector : BaseConnector
     {
@@ -19,14 +16,7 @@
         protected const string AppConsumerSecret = "og5tNjm7cWqZSDaUhus0QJldRBZt0KYhd0bnStLXjcNpodageH";
         protected const string AccessToken = "806037750881226752-ngNvUw6NlEy5tpxBwFEe79PQo4NUAXf";
         protected const string AccessTokenSecret = "2p4SswJXfJ61joywV4P89LMe5bT0r0wh7aT7zz1HwMCOb";
-
-
-        //public const string AppConsumerKey = "xvz1evFS4wEEPTGEFPHBog";
-        //public const string AppConsumerSecret = "kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw";
-        //public const string AccessToken = "370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb";
-        //public const string AccessTokenSecret = "LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE";
-
-        private readonly DateTime EpochUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        private readonly DateTime epochUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         private readonly HMACSHA1 sigHasher;
 
         public TwitterConnector()
@@ -44,9 +34,7 @@
             using (HttpClient client = this.CreateHttpClient(Configuration.Current.Twitter.BaseApiUrl, request))
             {
                 HttpContent content = new JsonContent<TRequest>(data);
-                //content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
                 HttpResponseMessage responseMessage = client.PostAsync(request.Url, content).Result;
-                // HttpResponseMessage responseMessage = client.GetAsync(request.Url).Result;
                 IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage.Content);
                 return result;
             }
@@ -62,7 +50,7 @@
 
         private string GetAuthHeader(OAuthRequest request)
         {
-            var timestamp = (int)((DateTime.UtcNow - this.EpochUtc).TotalSeconds);
+            var timestamp = (int)(DateTime.UtcNow - this.epochUtc).TotalSeconds;
             request.Data.Add("oauth_consumer_key", TwitterConnector.AppConsumerKey);
             request.Data.Add("oauth_nonce", "ea9ec8429b68d6b77cd5600adbbb0456");
             request.Data.Add("oauth_signature_method", "HMAC-SHA1");
@@ -75,32 +63,31 @@
 
         private string GenerateOAuthHeader(Dictionary<string, string> data)
         {
-            return "OAuth " + string.Join(",",
-                data.Where(kvp => kvp.Key.StartsWith("oauth_"))
-                .Select(kvp => string.Format("{0}=\"{1}\"", Uri.EscapeDataString(kvp.Key), Uri.EscapeDataString(kvp.Value)))
-                .OrderBy(s => s)
-            );
+            ////return "OAuth " + string.Join(",",
+            ////    data.Where(kvp => kvp.Key.StartsWith("oauth_"))
+            ////    .Select(kvp => string.Format("{0}=\"{1}\"", Uri.EscapeDataString(kvp.Key), Uri.EscapeDataString(kvp.Value)))
+            ////    .OrderBy(s => s));
+            return string.Empty;
         }
 
         private string GenerateSignature(OAuthRequest request)
         {
-            string fullUrl = request.Url;
+            ////string fullUrl = request.Url;
 
-            var sigString = string.Join("&", request.Data
-                .Union(request.Data)
-                .Select(kvp => string.Format("{0}={1}", Uri.EscapeDataString(kvp.Key), Uri.EscapeDataString(kvp.Value)))
-                .OrderBy(s => s)
-            );
+            ////var sigString = string.Join("&", request.Data
+            ////    .Union(request.Data)
+            ////    .Select(kvp => string.Format("{0}={1}", Uri.EscapeDataString(kvp.Key), Uri.EscapeDataString(kvp.Value)))
+            ////    .OrderBy(s => s));
 
-            var fullSigData = string.Format(
-                "{0}&{1}&{2}",
-                request.Action.ToString(),
-                HttpUtility.UrlEncode(fullUrl),
-                HttpUtility.UrlEncode(sigString.ToString())
-                //Uri.EscapeDataString(sigString.ToString())
-            );
+            ////var fullSigData = string.Format(
+            ////    "{0}&{1}&{2}",
+            ////    request.Action.ToString(),
+            ////    HttpUtility.UrlEncode(fullUrl),
+            ////    HttpUtility.UrlEncode(sigString.ToString()));
 
-            return Convert.ToBase64String(this.sigHasher.ComputeHash(new ASCIIEncoding().GetBytes(fullSigData.ToString())));
+            ////return Convert.ToBase64String(this.sigHasher.ComputeHash(new ASCIIEncoding().GetBytes(fullSigData.ToString())));
+
+            return string.Empty;
         }
     }
 }

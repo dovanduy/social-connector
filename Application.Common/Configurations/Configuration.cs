@@ -111,5 +111,14 @@
                 return (TwitterElement)this["twitter"];
             }
         }
+
+        [ConfigurationProperty("linkedIn")]
+        public LinkedInElement LinkedIn
+        {
+            get
+            {
+                return (LinkedInElement)this["linkedIn"];
+            }
+        }
     }
 }

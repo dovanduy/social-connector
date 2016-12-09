@@ -2,8 +2,8 @@
 {
     using App.Service.Message;
     using App.Common.Validation;
-    using Common;
-    using Common.Connector;
+    using Service.LinkedIn;
+    using Common.DI;
 
     internal class MessageService : IMessageService
     {
@@ -11,11 +11,19 @@
         {
             this.ValidatePostMessageRequest(request);
 
-            //IConnector facebookConnector = ConnectorFactory.Create(ConnectorType.Facebook);
-            //facebookConnector.Post<PostMessageRequest, PostMessageResponse>(string.Empty, request);
+            //// IConnector facebookConnector = ConnectorFactory.Create(ConnectorType.Facebook);
+            //// facebookConnector.Post<PostMessageRequest, PostMessageResponse>(string.Empty, request);
 
-            IConnector twitterConnector = ConnectorFactory.Create(ConnectorType.Twitter);
-            twitterConnector.Post<PostMessageRequest, PostMessageResponse>(string.Empty, request);
+            ShareComment shareComment = new ShareComment(request.Content);
+            ILinkedInService linkedInService = IoC.Container.Resolve<ILinkedInService>();
+            linkedInService.ShareComment(shareComment);
+
+            /* To do*/
+            //// IConnector linkedInConnector = ConnectorFactory.Create(ConnectorType.LinkedIn);
+            //// linkedInConnector.Post<PostMessageRequest, PostMessageResponse>(string.Empty, request);
+
+            ////IConnector twitterConnector = ConnectorFactory.Create(ConnectorType.Twitter);
+            ////twitterConnector.Post<PostMessageRequest, PostMessageResponse>(string.Empty, request);
 
             return new PostMessageResponse();
         }
