@@ -2,7 +2,6 @@
 {
     public interface IPostMessage
     {
-        string Subject { get; }
         string Content { get; }
     }
 }

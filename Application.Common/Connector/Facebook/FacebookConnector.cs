@@ -13,7 +13,16 @@
             {
                 HttpContent content = new JsonContent<TRequest>(data);
                 HttpResponseMessage responseMessage = client.PostAsync(uri, content).Result;
-                IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage.Content);
+                IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage);
+                return result;
+            }
+        }
+        public override IResponseData<TResponse> Get<TResponse>(string uri)
+        {
+            using (HttpClient client = this.CreateHttpClient(Configuration.Current.Facebook.BaseApiUrl))
+            {
+                HttpResponseMessage responseMessage = client.GetAsync(uri).Result;
+                IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage);
                 return result;
             }
         }

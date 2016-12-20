@@ -12,7 +12,7 @@
             {
                 HttpContent content = new JsonContent<TRequest>(data);
                 HttpResponseMessage responseMessage = client.PutAsync(uri, content).Result;
-                IResponseData<TRespone> result = this.GetResponseAs<ResponseData<TRespone>>(responseMessage.Content);
+                IResponseData<TRespone> result = this.GetResponseAs<ResponseData<TRespone>>(responseMessage);
                 return result;
             }
         }
@@ -23,7 +23,7 @@
             {
                 HttpContent content = new JsonContent<TRequest>(data);
                 HttpResponseMessage responseMessage = client.PostAsync(uri, content).Result;
-                IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage.Content);
+                IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage);
                 return result;
             }
         }
@@ -33,7 +33,7 @@
             using (HttpClient client = this.CreateHttpClient(Configuration.Current.IntegrationTest.BaseUrl))
             {
                 HttpResponseMessage responseMessage = client.DeleteAsync(uri).Result;
-                IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage.Content);
+                IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage);
                 return result;
             }
         }
@@ -43,7 +43,7 @@
             using (HttpClient client = this.CreateHttpClient(Configuration.Current.IntegrationTest.BaseUrl))
             {
                 HttpResponseMessage responseMessage = client.GetAsync(uri).Result;
-                IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage.Content);
+                IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage);
                 return result;
             }
         }

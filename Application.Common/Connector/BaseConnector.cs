@@ -7,6 +7,7 @@
     using System.IO;
     using Logging;
     using DI;
+    using Validation;
 
     public class BaseConnector : IConnector
     {
@@ -39,16 +40,13 @@
             return client;
         }
 
-        protected TResponse GetResponseAs<TResponse>(HttpContent content)
+        protected TResponse GetResponseAs<TResponse>(HttpResponseMessage message)
         {
-            /*
-            string result = content.ReadAsStringAsync().Result;
-            ILogger logger = IoC.Container.Resolve<ILogger>();
-            logger.Info(result);
-            return default(TResponse);
-            */
+            if (!message.IsSuccessStatusCode) {
+                throw new ConnectorException(message);
+            }
 
-            TResponse result = content.ReadAsAsync<TResponse>().Result;
+            TResponse result = message.Content.ReadAsAsync<TResponse>().Result;
             return result;
         }
     }

@@ -16,7 +16,7 @@
                 content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
                 HttpResponseMessage responseMessage = client.PostAsync(uri, content).Result;
-                IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage.Content);
+                IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage);
 
                 return result;
             }
