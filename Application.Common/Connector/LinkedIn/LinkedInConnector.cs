@@ -14,11 +14,14 @@
                 string text = JsonHelper.ToString(data);
                 HttpContent content = new StringContent(text);
                 content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-
                 HttpResponseMessage responseMessage = client.PostAsync(uri, content).Result;
-                IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage);
 
-                return result;
+                this.ThrowIfErrorResponse(responseMessage);
+
+                //// temprary
+                ////IResponseData<TResponse> result = this.GetResponseAs<ResponseData<TResponse>>(responseMessage);
+
+                return default(IResponseData<TResponse>);
             }
         }
     }

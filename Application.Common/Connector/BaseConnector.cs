@@ -42,12 +42,17 @@
 
         protected TResponse GetResponseAs<TResponse>(HttpResponseMessage message)
         {
-            if (!message.IsSuccessStatusCode) {
-                throw new ConnectorException(message);
-            }
 
             TResponse result = message.Content.ReadAsAsync<TResponse>().Result;
             return result;
+        }
+
+        protected void ThrowIfErrorResponse(HttpResponseMessage responseMessage)
+        {
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new ConnectorException(responseMessage);
+            }
         }
     }
 }

@@ -15,12 +15,12 @@
         {
             try
             {
-                PostMessageRequest request = new PostMessageRequest() { Content = "Just test my API Content" };
+                PostMessageRequest request = new PostMessageRequest() { Content = string.Format("Just test my API Content:{0}", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")) };
                 IMessageService service = IoC.Container.Resolve<IMessageService>();
                 PostMessageResponse postResult = service.Post(request);
                 Assert.IsTrue(true);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 Assert.IsTrue(false);
             }

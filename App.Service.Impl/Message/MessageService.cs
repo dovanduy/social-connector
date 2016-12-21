@@ -8,6 +8,7 @@
     using System;
     using Common.Logging;
     using System.Collections.Generic;
+    using Service.LinkedIn;
 
     internal class MessageService : IMessageService
     {
@@ -23,14 +24,14 @@
             try
             {
                 this.ValidatePostMessageRequest(request);
-                ShareFacebookComment shareFBComment = new ShareFacebookComment(request.Content);
-                IFacebookService facebookInService = IoC.Container.Resolve<IFacebookService>();
-                facebookInService.ShareComment(shareFBComment);
+                //ShareFacebookComment shareFBComment = new ShareFacebookComment(request.Content);
+                //IFacebookService facebookInService = IoC.Container.Resolve<IFacebookService>();
+                //facebookInService.ShareComment(shareFBComment);
 
                 //// was eexceed of limitation
-                ////ShareComment shareComment = new ShareComment(request.Content);
-                ////ILinkedInService linkedInService = IoC.Container.Resolve<ILinkedInService>();
-                ////linkedInService.ShareComment(shareComment);
+                ShareLinkedInComment shareLinkedInComment = new ShareLinkedInComment(request.Content);
+                ILinkedInService linkedInService = IoC.Container.Resolve<ILinkedInService>();
+                linkedInService.ShareComment(shareLinkedInComment);
 
                 //ShareTwitterComment twitterComment = new ShareTwitterComment(request.Content);
                 //ITwitterService twitterService = IoC.Container.Resolve<ITwitterService>();

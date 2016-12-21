@@ -2,6 +2,6 @@
 {
     public interface ILinkedInService
     {
-        ShareCommentResponse ShareComment(ShareComment shareComment);
+        ShareCommentResponse ShareComment(ShareLinkedInComment shareComment);
     }
 }
