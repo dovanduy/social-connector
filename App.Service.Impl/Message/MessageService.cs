@@ -12,6 +12,26 @@
 
     internal class MessageService : IMessageService
     {
+        public void CommentOnFeed(CommentOnFeedRequest request)
+        {
+            this.ValidateCommentOnFeedRequest(request);
+            FacebookCommentOnFeed fbCommentOnFeed = new FacebookCommentOnFeed(request.Id, request.Comment);
+            IFacebookService facebookInService = IoC.Container.Resolve<IFacebookService>();
+            facebookInService.CommentOnFeed(fbCommentOnFeed);
+        }
+
+        private void ValidateCommentOnFeedRequest(CommentOnFeedRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request.Id)) {
+                throw new ValidationException("message.commentOnFeed.objectIdIsRequired");
+            }
+
+            if (string.IsNullOrWhiteSpace(request.Comment))
+            {
+                throw new ValidationException("message.commentOnFeed.commentIsRequired");
+            }
+        }
+
         public IList<MessageListItem> GetMessages()
         {
             IFacebookService facebookInService = IoC.Container.Resolve<IFacebookService>();
@@ -24,9 +44,9 @@
             try
             {
                 this.ValidatePostMessageRequest(request);
-                //ShareFacebookComment shareFBComment = new ShareFacebookComment(request.Content);
-                //IFacebookService facebookInService = IoC.Container.Resolve<IFacebookService>();
-                //facebookInService.ShareComment(shareFBComment);
+                ShareFacebookComment shareFBComment = new ShareFacebookComment(request.Content);
+                IFacebookService facebookInService = IoC.Container.Resolve<IFacebookService>();
+                facebookInService.ShareComment(shareFBComment);
 
                 //// was eexceed of limitation
                 ShareLinkedInComment shareLinkedInComment = new ShareLinkedInComment(request.Content);

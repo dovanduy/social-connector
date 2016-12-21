@@ -4,5 +4,6 @@
     {
         PostMessageResponse Post(PostMessageRequest request);
         System.Collections.Generic.IList<MessageListItem> GetMessages();
+        void CommentOnFeed(CommentOnFeedRequest request);
     }
 }

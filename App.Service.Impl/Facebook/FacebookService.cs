@@ -12,6 +12,18 @@
 
     internal class FacebookService : IFacebookService
     {
+        public void CommentOnFeed(FacebookCommentOnFeed request)
+        {
+            string url = string.Format(
+                @"{0}/v2.8/{1}/comments?access_token={2}&message={3}",
+                Configuration.Current.Facebook.BaseApiUrl,
+                request.Id,
+                Configuration.Current.Facebook.AccessToken,
+                UrlHelper.Encode(request.Message));
+            IConnector connector = ConnectorFactory.Create(ConnectorType.Facebook);
+            connector.Post<FacebookCommentOnFeed, string>(url, request);
+        }
+
         public IList<MessageListItem> GetComments()
         {
             string url = string.Format(

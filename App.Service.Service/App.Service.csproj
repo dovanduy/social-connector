@@ -44,12 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Facebook\FacebookCommentOnFeed.cs" />
     <Compile Include="Facebook\IFacebookService.cs" />
     <Compile Include="Facebook\ShareFacebookComment.cs" />
     <Compile Include="LinkedIn\ILinkedInService.cs" />
     <Compile Include="LinkedIn\LinkedVisibility.cs" />
     <Compile Include="LinkedIn\ShareComment.cs" />
     <Compile Include="LinkedIn\ShareCommentResponse.cs" />
+    <Compile Include="Message\CommentOnFeedRequest.cs" />
     <Compile Include="Message\IMessageService.cs" />
     <Compile Include="Message\MessageListItem.cs" />
     <Compile Include="Message\PostMessageRequest.cs" />

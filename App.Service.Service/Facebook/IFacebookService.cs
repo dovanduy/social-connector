@@ -7,5 +7,6 @@ namespace App.Service.Facebook
     {
         void ShareComment(ShareFacebookComment comment);
         IList<MessageListItem> GetComments();
+        void CommentOnFeed(FacebookCommentOnFeed shareFBComment);
     }
 }
